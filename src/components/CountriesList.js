@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const CountriesList = (props) => {
+    console.log("This from CountriesList: ", props.countries)
     const countries = props.countries.map(country => {
         return (
-            <div key={country.cca3} className="list-group-item list-group-item-action">
-                <Link to={`/countries/${country.cca3}`}>{country.name.common}</Link>           
+            <div className="list-group-item list-group-item-action">
+                <Link to={`/countries/${country.alpha3Code}`} key={country.alpha3Code}>{country.name    }</Link>           
             </div>
         )
     })

@@ -1,10 +1,11 @@
 import React from "react";
 import './App.css';
-import countries_data from './countries.json';
+// import countries_data from './countries.json';
 import { Route } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import CountriesList from "./components/CountriesList";
 import CountryDetails from "./components/CountryDetails";
+import axios from 'axios';
 
 class App extends React.Component {
 
@@ -15,11 +16,17 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      countries: countries_data })
+    axios.get('https://restcountries.eu/rest/v2/all').then(response => {
+        this.setState({
+          countries: response.data })
+      }).catch(error => {
+        console.log(error)
+      })
   }
 
+
   render () {
+      if (this.state.countries.length === 0) return <h3>Loading...</h3>
       return (
         <div>
           <Navbar />           

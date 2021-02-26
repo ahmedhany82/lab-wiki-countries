@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 export default class CountryDetails extends React.Component {
 
     render() {
-        const country = this.props.countries.find(country => country.cca3 === this.props.match.params.cca3)
-        const borders = country.borders.map(border => {
-        let borderCountry = this.props.countries.find(country => country.cca3 === border)
-            return <li>
-                <Link to={`/countries/${border}`}>{borderCountry.name.common}</Link>
+        const country = this.props.countries.find(country => country.alpha3Code === this.props.match.params.cca3)
+        const borders = country.borders.map((border,index) => {
+        let borderCountry = this.props.countries.find(country => country.alpha3Code === border)
+            return <li key={index}>
+                <Link to={`/countries/${border}`} >{borderCountry.name}</Link>
             </li>
         })
         return (
