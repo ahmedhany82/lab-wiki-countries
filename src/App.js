@@ -22,12 +22,16 @@ class App extends React.Component {
 
   render () {
       return (
-        <div className="App">
+        <div>
           <Navbar />           
           <div className="container">
             <div className="row">
-              <CountriesList countries={this.state.countries} />
-              <Route exact path="/countries/:cca3" render={(props)=> <CountryDetails {...props} countries={this.state.countries}/>} />
+              <div className="col-5" style={{maxHeight: '90vh', overflow: 'scroll'}}>
+                  <CountriesList countries={this.state.countries} />
+              </div>
+              <div className="col-7">
+                  <Route exact path="/countries/:cca3" render={(props)=> <CountryDetails {...props} countries={this.state.countries}/>} />
+              </div>
             </div>
           </div>
         </div>
